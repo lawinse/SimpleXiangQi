@@ -102,11 +102,13 @@ bool Position::makeMove(int mv) {
 	return true;
 }
 
-void Position::undoMakeMove() {
+int Position::undoMakeMove() {
 	--nDistance;
 	--nMoveNum;
 	changeSide();
-	undoMovePiece(mvsList[nMoveNum].getMv(),mvsList[nMoveNum].getCapturedOne());
+	Move lastMv = mvsList[nMoveNum];
+	undoMovePiece(lastMv.getMv(), lastMv.getCapturedOne());
+	return lastMv.getMv();
 }
 
 void Position::makeNullMove() {
@@ -367,8 +369,9 @@ bool Position::isChecked() const {
 				pcDst = ucpcSquares[sqDst];
 				if (pcDst != 0) {
 					if (pcDst == pcOppSide + PIECE_CANNON) return true;
+					break;
 				}
-				break;
+				sqDst += nDelta;
 			}
 		}
 		return false;

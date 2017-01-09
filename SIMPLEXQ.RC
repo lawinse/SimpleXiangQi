@@ -41,12 +41,15 @@ BEGIN
         MENUITEM "我先走(&R)", IDM_FILE_RED
         MENUITEM "电脑先走(&B)", IDM_FILE_BLACK
         MENUITEM SEPARATOR
+        MENUITEM "悔棋(&W)", IDM_WITHDRAW
+        MENUITEM SEPARATOR
         MENUITEM "退出(&X)", IDM_FILE_EXIT
     END
     POPUP "帮助(&H)"
     BEGIN
         MENUITEM "象棋百科全书(&X)", IDM_HELP_HOME
         MENUITEM SEPARATOR
+        MENUITEM "提示(&H)", IDM_HINT
         MENUITEM "关于(&A)", IDM_HELP_ABOUT
     END
 END

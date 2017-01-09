@@ -8,7 +8,7 @@ struct Gui {
 	HDC hdc, hdcTmp;
 	HBITMAP bmpBoard, bmpSelected, bmpPieces[24];
 	int sqSelected, mvLast;
-	bool isFlipped, isGameOver;
+	bool isFlipped, isGameOver, isSelfBattle;
 };
 
 extern Gui GUI;
@@ -26,6 +26,7 @@ static void MessageBoxMute(LPCSTR txt);
 const bool DRAW_SELECTED = true;
 static void DrawSquare(int sq, bool isSelected = false);
 static void Response();
+static void WithDraw();
 static void ClickSquare(int sq);
 void StartUp();
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

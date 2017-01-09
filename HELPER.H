@@ -106,12 +106,13 @@ class Position{
 	Move mvsList[MAX_MOVES];
 	Zobrist zobr;
 public:
-	int getSdPlayer() {return sdPlayer;}
-	Zobrist getZobr() {return zobr;}
-	int get_nDistance() {return nDistance;}
-	int getMoveNum() {return nMoveNum;}
+	int getSdPlayer() const {return sdPlayer;}
+	Zobrist getZobr() const {return zobr;}
+	int get_nDistance() const {return nDistance;}
+	int getMoveNum() const {return nMoveNum;}
 	void set_nDistance(int v) {nDistance = v;}
-	BYTE getSquareAt(int index) {return ucpcSquares[index];}
+	BYTE getSquareAt(int index) const {return ucpcSquares[index];}
+	Move getLastMove() const {return mvsList[nMoveNum-1];}
 
 	void clearBoard();
 	void clearHist();
@@ -126,7 +127,7 @@ public:
 	int movePiece(int mv);
 	void undoMovePiece(int mv, int pcCaptured);
 	bool makeMove(int mv);
-	void undoMakeMove();
+	int undoMakeMove();
 	void makeNullMove();
 	void undoMakeNullMove();
 

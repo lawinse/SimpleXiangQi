@@ -117,6 +117,19 @@ void DrawSquare(int sq, bool isSelected) {
 		DrawTransBmp(GUI.hdc, GUI.hdcTmp, xx, yy, GUI.bmpSelected);
 }
 
+void WithDraw() {
+	int lmv;
+	lmv = POS.undoMakeMove();
+	DrawSquare(getMoveSrc(lmv));
+	DrawSquare(getMoveDst(lmv));
+	lmv = POS.undoMakeMove();
+	DrawSquare(getMoveSrc(lmv));
+	DrawSquare(getMoveDst(lmv));
+	GUI.mvLast = POS.getLastMove().getMv();
+	DrawSquare(getMoveSrc(GUI.mvLast), DRAW_SELECTED);
+	DrawSquare(getMoveDst(GUI.mvLast), DRAW_SELECTED);
+}
+
 void Response() {
 	int valueRep;
 	SetCursor((HCURSOR) LoadImage(NULL, IDC_WAIT, IMAGE_CURSOR, 0, 0, LR_DEFAULTSIZE | LR_SHARED));
@@ -139,7 +152,7 @@ void Response() {
 	} else if (valueRep > 0) {
 		valueRep = POS.repValue(valueRep);
 		PlaySound(valueRep < -WIN_VALUE ? IDR_LOSS : valueRep > WIN_VALUE ? IDR_WIN : IDR_DRAW);
-		MessageBoxMute(valueRep < -WIN_VALUE ? "LOSS" : valueRep > WIN_VALUE ? "WIN" : "DRAE");
+		MessageBoxMute(valueRep < -WIN_VALUE ? "LOSS" : valueRep > WIN_VALUE ? "WIN" : "DRAW");
 		GUI.isGameOver = true;
 	} else if (POS.getMoveNum() > 100) {
 		PlaySound(IDR_DRAW);
@@ -246,6 +259,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 				DeleteDC(GUI.hdcTmp);
 			}
 			ReleaseDC(GUI.hWnd, hdc);
+			break;
+		case IDM_HINT:
+			GUI.hdc = GetDC(GUI.hWnd);
+			GUI.hdcTmp = CreateCompatibleDC(GUI.hdc);
+			Response();
+			Response();
+			DeleteDC(GUI.hdcTmp);
+			ReleaseDC(GUI.hWnd, GUI.hdc);
+			break;
+		case IDM_WITHDRAW:
+			GUI.hdc = GetDC(GUI.hWnd);
+			GUI.hdcTmp = CreateCompatibleDC(GUI.hdc);
+			WithDraw();
+			DeleteDC(GUI.hdcTmp);
+			ReleaseDC(GUI.hWnd, GUI.hdc);
 			break;
 		case IDM_FILE_EXIT:
 			DestroyWindow(GUI.hWnd);

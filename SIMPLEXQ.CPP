@@ -22,6 +22,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	GUI.hInst = hInstance;
 	LoadBook();
 	GUI.isFlipped = false;
+	GUI.isSelfBattle = false;
 	StartUp();
 
 	GUI.bmpBoard = LoadResBmp(IDB_BOARD);

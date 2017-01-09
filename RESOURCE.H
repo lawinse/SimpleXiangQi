@@ -38,5 +38,7 @@
 #define IDM_FILE_EXIT  403
 #define IDM_HELP_HOME  404
 #define IDM_HELP_ABOUT 405
+#define IDM_HINT 406
+#define IDM_WITHDRAW 407
 
 #endif
