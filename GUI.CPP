@@ -120,6 +120,10 @@ void DrawSquare(int sq, bool isSelected) {
 void WithDraw() {
 	int lmv;
 	lmv = POS.undoMakeMove();
+	if (lmv == 0) {
+		MessageBoxMute("Cannot Withdraw!");
+		return;
+	}
 	DrawSquare(getMoveSrc(lmv));
 	DrawSquare(getMoveDst(lmv));
 	lmv = POS.undoMakeMove();

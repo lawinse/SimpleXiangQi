@@ -359,7 +359,8 @@ void SearchMain() {
 		value = SearchRoot(i);
 
 		if (value > WIN_VALUE || value < -WIN_VALUE) break;
-		if (clock() - t > 1.5*CLOCKS_PER_SEC) break;
+		double timeLimit = POS.getMoveNum() > 10 ? CLOCKS_PER_SEC : 0.5*CLOCKS_PER_SEC;
+		if (clock() - t > timeLimit) break;
 	}
 }
 static BYTE cucMvvlva[24] = {

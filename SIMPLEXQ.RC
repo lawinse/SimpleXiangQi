@@ -68,12 +68,10 @@ BEGIN
         BLOCK "040904B0"
         BEGIN
             VALUE "Comments", "SimpleXQ 0.x, (C) 2004-2008\0"
-            VALUE "CompanyName", "www.xqbase.com\0"
             VALUE "FileDescription", "SimpleXQ\0"
             VALUE "FileVersion", "0.x\0"
             VALUE "InternalName", "SimpleXQ\0"
             VALUE "LegalCopyright", "SimpleXQ 0.x, (C) 2004-2008\0"
-            VALUE "LegalTrademarks", "www.xqbase.com\0"
             VALUE "OriginalFilename", "SimpleXQ.EXE\0"
             VALUE "ProductName", "SimpleXQ\0"
             VALUE "ProductVersion", "0.x\0"

@@ -103,6 +103,7 @@ bool Position::makeMove(int mv) {
 }
 
 int Position::undoMakeMove() {
+	if (nMoveNum == 1) return 0;
 	--nDistance;
 	--nMoveNum;
 	changeSide();
@@ -368,7 +369,8 @@ bool Position::isChecked() const {
 			while(isInBoard(sqDst)) {
 				pcDst = ucpcSquares[sqDst];
 				if (pcDst != 0) {
-					if (pcDst == pcOppSide + PIECE_CANNON) return true;
+					if (pcDst == pcOppSide + PIECE_CANNON)
+						return true;
 					break;
 				}
 				sqDst += nDelta;
